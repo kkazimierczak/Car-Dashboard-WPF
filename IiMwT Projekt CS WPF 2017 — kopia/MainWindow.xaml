@@ -1,0 +1,117 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IiMwT_Projekt_CS_WPF_2017"
+        xmlns:agc="http://www.arction.com/gauges/" x:Class="IiMwT_Projekt_CS_WPF_2017.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="1280" ResizeMode="NoResize">
+    <Grid Background="#FF171717">
+        <agc:Gauge x:Name="FuelGauge" 
+                   HorizontalAlignment="Left" 
+                   Margin="300,50,0,0" 
+                   VerticalAlignment="Top" 
+                   Theme="CarMeter" 
+                   ArcPadding="15" 
+                   IsEnabled="False" 
+                   StrokeThickness="10" 
+                   AdjacentPadding="10" 
+                   Height="200" 
+                   Width="200" 
+                   Stroke="#FF252525">
+            <agc:Gauge.PrimaryScale>
+                <agc:Scale ValueFormat=""
+                           AngleBegin="240"
+                           AngleEnd="120" 
+                           ArcPadding="0" 
+                           ArcStrokeThickness="2" 
+                           FontSize="14" 
+                           MajorTickDiv="2" 
+                           MajorTickCount="3" 
+                           MinorTickCount="1" 
+                           RangeEnd="100" 
+                           Theme="CarMeter" 
+                           IsHitTestVisible="True" 
+                           Label="{x:Null}"
+                           IsEnabled="False" 
+                           RoundBorder="False" 
+                           LabelDistance="6">
+                    <agc:Scale.MajorTicks>
+                        <agc:MajorTicksLine FontSize="14"
+                                            IsEnabled="False" 
+                                            LabelFormat="" />
+                    </agc:Scale.MajorTicks>
+                </agc:Scale>
+            </agc:Gauge.PrimaryScale>
+        </agc:Gauge>
+        <Image x:Name="image"
+               Source="images/fuel_full.png" 
+               HorizontalAlignment="Left" 
+               Height="30"
+               Width="30"
+               VerticalAlignment="Top" 
+               RenderTransformOrigin="2.986,2.171" 
+               Margin="425,130,0,0" />
+        <agc:Gauge x:Name="SpeedGauge"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Bottom" 
+                   Margin="25,0,0,25" 
+                   Height="400" 
+                   Width="400" 
+                   Theme="CarMeter"
+                   StrokeThickness="10" 
+                   Stroke="#FF252525">
+        </agc:Gauge>
+        <agc:Gauge x:Name="RPMGauge"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Bottom" 
+                   Margin="830,0,0,25" 
+                   Height="400" 
+                   Width="400" 
+                   Theme="CarMeter" 
+                   StrokeThickness="10" 
+                   Stroke="#FF252525" >
+            <agc:Gauge.PrimaryScale>
+                <agc:Scale/>
+            </agc:Gauge.PrimaryScale>
+        </agc:Gauge>
+        <agc:Gauge x:Name="TempGauge" 
+            HorizontalAlignment="Left" 
+            Margin="780,50,0,0" 
+            VerticalAlignment="Top" 
+            Theme="CarMeter" 
+            ArcPadding="15" 
+            IsEnabled="False" 
+            StrokeThickness="10" 
+            AdjacentPadding="10" 
+            Height="200" 
+            Width="200" 
+            Stroke="#FF252525">
+            <agc:Gauge.PrimaryScale>
+                <agc:Scale ValueFormat=""
+                    AngleBegin="240"
+                    AngleEnd="120" 
+                    ArcPadding="0" 
+                    ArcStrokeThickness="2" 
+                    FontSize="14" 
+                    MajorTickDiv="2" 
+                    MajorTickCount="3" 
+                    MinorTickCount="1" 
+                    RangeEnd="100" 
+                    Theme="CarMeter" 
+                    IsHitTestVisible="True" 
+                    Label="{x:Null}"
+                    IsEnabled="False" 
+                    RoundBorder="False" 
+                    LabelDistance="6">
+                    <agc:Scale.MajorTicks>
+                        <agc:MajorTicksLine FontSize="14"
+                            IsEnabled="False" 
+                            LabelFormat="" />
+                    </agc:Scale.MajorTicks>
+                </agc:Scale>
+            </agc:Gauge.PrimaryScale>
+        </agc:Gauge>
+    </Grid>
+</Window>

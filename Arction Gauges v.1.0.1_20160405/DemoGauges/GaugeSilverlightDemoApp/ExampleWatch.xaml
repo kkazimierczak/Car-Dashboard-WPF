@@ -1,0 +1,65 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:agc="http://www.arction.com/gauges/" x:Class="GaugesWpfDemoApp.ExampleClock" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Width="{Binding Width, ElementName=userControl}" Height="{Binding Height, ElementName=userControl}">
+
+        <agc:Gauge 
+            Name="ClockGauge" 
+            Height="Auto" 
+            Width="Auto"
+            Theme="None" StrokeThickness="3" Margin="10,10,0,0">
+            <agc:Gauge.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="White" Offset="0.858"/>
+                    <GradientStop Color="#FFF9F9F9" Offset="0.874"/>
+                    <GradientStop Color="#4C00FFFF" Offset="0.008"/>
+                    <GradientStop Color="#5209FEFE" Offset="1"/>
+                    <GradientStop Color="#DFD2FFFF" Offset="0.766"/>
+                </RadialGradientBrush>
+            </agc:Gauge.Fill>
+
+            <!--Hours Scale-->
+            <agc:Gauge.PrimaryScale>
+                <agc:Scale AngleBegin="60" AngleEnd="60" RangeBegin="1" RangeEnd="13" Theme="None" 
+                           MajorTickCount="12" MinorTickCount="0" TertiaryTickCount="0" DialShape="DullNeedle" 
+                           DialLengthFactor="0.6" DialColor1="#FF040000" ValueFormat="" LabelDistance="45" LabelDistanceType="Absolute">
+                    <agc:Scale.Label>
+                        <TextBlock FontSource="{x:Null}" Text="Day">
+                			<Run Text="Day"/>
+                        </TextBlock>
+                    </agc:Scale.Label>
+                    <agc:Scale.MajorTicks>
+                        <agc:MajorTicksLine LabelOffset="-15" />
+                    </agc:Scale.MajorTicks>
+                </agc:Scale>
+            </agc:Gauge.PrimaryScale>
+
+            <agc:Gauge.SecondaryScales>
+                <!--Minutes Scale-->
+                <agc:Scale AngleBegin="90" AngleEnd="90" RangeBegin="0" RangeEnd="60" Theme="None" MajorTickCount="60" 
+                           MinorTickCount="0" TertiaryTickCount="0" DialShape="DullNeedle" DialLengthFactor="0.7" DialColor1="Black"
+                           Value="40">
+                    <agc:Scale.MajorTicks>
+                        <agc:MajorTicksLine TickStroke="Black" OffsetA="-5" LabelFormat=""/>
+                    </agc:Scale.MajorTicks>
+                </agc:Scale>
+
+                <!--Seconds Scale-->
+                <agc:Scale AngleBegin="90" AngleEnd="90" RangeBegin="0" RangeEnd="60" Theme="None" MajorTickCount="60" 
+                           MinorTickCount="0" TertiaryTickCount="0" DialShape="Line" DialLengthFactor="0.55"
+                           DialColor1="Black" Value="15" Height="282" Width="317">
+                    <agc:Scale.MajorTicks>
+                        <agc:MajorTicksLine TickStroke="Black" OffsetA="-5" LabelFormat=""/>
+                    </agc:Scale.MajorTicks>
+                </agc:Scale>
+            </agc:Gauge.SecondaryScales>
+
+        </agc:Gauge>
+
+    </Grid>
+</UserControl>

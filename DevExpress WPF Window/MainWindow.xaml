@@ -1,0 +1,147 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DevExpress_WPF_Window"
+        xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+        xmlns:agc="http://www.arction.com/gauges/" x:Class="DevExpress_WPF_Window.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="1280" ResizeMode="CanMinimize">
+    <Grid Background="#FF151515">
+        <dxga:CircularGaugeControl x:Name="SpeedGauge"
+                                   Height="400"
+                                   Width="400"
+                                   Margin="50,250,0,0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Top">
+            <dxga:CircularGaugeControl.Model>
+                <dxga:CircularProgressiveModel/>
+            </dxga:CircularGaugeControl.Model>
+            <dxga:CircularGaugeControl.Scales>
+                <dxga:ArcScale StartValue="0" EndValue="200" 
+                               StartAngle="120" EndAngle="420"
+                               MajorIntervalCount="20" MinorIntervalCount="2">
+                    <dxga:ArcScale.LabelOptions>
+                        <dxga:ArcScaleLabelOptions ShowFirst="False" Orientation="LeftToRight" />
+                    </dxga:ArcScale.LabelOptions>
+                    <dxga:ArcScale.Needles>
+                        <dxga:ArcScaleNeedle />
+                    </dxga:ArcScale.Needles>
+                    <dxga:ArcScale.Layers>
+                        <dxga:ArcScaleLayer />
+                    </dxga:ArcScale.Layers>
+                </dxga:ArcScale>
+            </dxga:CircularGaugeControl.Scales>
+        </dxga:CircularGaugeControl>
+        <dxga:CircularGaugeControl x:Name="RPMGauge"
+                                   Height="400"
+                                   Width="400"
+                                   Margin="830, 250, 0, 0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Top">
+            <dxga:CircularGaugeControl.Model>
+                <dxga:CircularProgressiveModel/>
+            </dxga:CircularGaugeControl.Model>
+            <dxga:CircularGaugeControl.Scales>
+                <dxga:ArcScale StartValue="0" EndValue="7000" 
+                    StartAngle="120" EndAngle="420"
+                    MajorIntervalCount="7" MinorIntervalCount="4">
+                    <dxga:ArcScale.LabelOptions>
+                        <dxga:ArcScaleLabelOptions ShowFirst="False" Orientation="LeftToRight" />
+                    </dxga:ArcScale.LabelOptions>
+                    <dxga:ArcScale.Needles>
+                        <dxga:ArcScaleNeedle />
+                    </dxga:ArcScale.Needles>
+                    <dxga:ArcScale.Layers>
+                        <dxga:ArcScaleLayer />
+                    </dxga:ArcScale.Layers>
+                </dxga:ArcScale>
+            </dxga:CircularGaugeControl.Scales>
+        </dxga:CircularGaugeControl>
+        <dxga:CircularGaugeControl x:Name="FuelGauge"
+                                   Height="250"
+                                   Width="250"
+                                   Margin="350,50,0,0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Top">
+            <dxga:CircularGaugeControl.Model>
+                <dxga:CircularProgressiveModel/>
+            </dxga:CircularGaugeControl.Model>
+            <dxga:CircularGaugeControl.Scales>
+                <dxga:ArcScale StartValue="0" EndValue="100" 
+                    StartAngle="120" EndAngle="240"
+                    MajorIntervalCount="2" MinorIntervalCount="5">
+                    <dxga:ArcScale.LabelOptions>
+                        <dxga:ArcScaleLabelOptions ShowFirst="False"
+                                                   Orientation="LeftToRight" />
+                    </dxga:ArcScale.LabelOptions>
+                    <dxga:ArcScale.Needles>
+                        <dxga:ArcScaleNeedle />
+                    </dxga:ArcScale.Needles>
+                    <dxga:ArcScale.Layers>
+                        <dxga:ArcScaleLayer />
+                    </dxga:ArcScale.Layers>
+                    <dxga:ArcScale.Ranges>
+                        <dxga:ArcScaleRange StartValue="20" EndValue="100" />
+                        <dxga:ArcScaleRange StartValue="10" EndValue="20" />
+                        <dxga:ArcScaleRange StartValue="0" EndValue="10" />
+                    </dxga:ArcScale.Ranges>
+                </dxga:ArcScale>
+            </dxga:CircularGaugeControl.Scales>
+        </dxga:CircularGaugeControl>
+        <dxga:CircularGaugeControl x:Name="TempGauge"
+                                   Height="250"
+                                   Width="250"
+                                   Margin="650,50,0,0"
+                                   FlowDirection="RightToLeft"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Top">
+            <dxga:CircularGaugeControl.Model>
+                <dxga:CircularProgressiveModel/>
+            </dxga:CircularGaugeControl.Model>
+            <dxga:CircularGaugeControl.Scales>
+                <dxga:ArcScale StartValue="0" EndValue="100" 
+                    StartAngle="120" EndAngle="240"
+                    MajorIntervalCount="2" MinorIntervalCount="5">
+                    <dxga:ArcScale.LabelOptions>
+                        <dxga:ArcScaleLabelOptions ShowFirst="False"
+                                                   Orientation="LeftToRight" />
+                    </dxga:ArcScale.LabelOptions>
+                    <dxga:ArcScale.Needles>
+                        <dxga:ArcScaleNeedle />
+                    </dxga:ArcScale.Needles>
+                    <dxga:ArcScale.Layers>
+                        <dxga:ArcScaleLayer />
+                    </dxga:ArcScale.Layers>
+                    <dxga:ArcScale.Ranges>
+                        <dxga:ArcScaleRange StartValue="20" EndValue="100" />
+                        <dxga:ArcScaleRange StartValue="10" EndValue="20" />
+                        <dxga:ArcScaleRange StartValue="0" EndValue="10" />
+                    </dxga:ArcScale.Ranges>
+                </dxga:ArcScale>
+            </dxga:CircularGaugeControl.Scales>
+        </dxga:CircularGaugeControl>
+
+        <Grid x:Name="MenuContainer"
+                    Width="300"
+                    Height="350"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,0,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0" Grid.ColumnSpan="2" Content="xD"/>
+            <Button Grid.Row="1" Grid.ColumnSpan="2" Content="Gazuuu"/>
+            <Button Grid.Row="2" Grid.Column="0" Content=":^)"/>
+            <Button Grid.Row="2" Grid.Column="1" Content=":)))"/>
+        </Grid>
+    </Grid>
+</Window>

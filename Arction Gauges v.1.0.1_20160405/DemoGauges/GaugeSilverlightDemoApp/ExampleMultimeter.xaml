@@ -1,0 +1,61 @@
+﻿<UserControl xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  xmlns:agc="http://www.arction.com/gauges/" x:Name="userControl"  x:Class="GaugesWpfDemoApp.ExampleMultimeter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300">
+    <Grid>
+        <Grid MinHeight="300" MinWidth="600" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            <agc:Gauge Fill="White" Name="VoltageGauge" ArcPadding="-10" AngleEnd="-40" AngleBegin="220" StrokeThickness="0.5" Width="Auto" Height="Auto">
+                <agc:Gauge.PrimaryScale>
+                    <agc:Scale DialShape="Line" Value="0" AngleBegin="210" ArcStrokeThickness="3" Stroke="Black" ArcStroke="#FFFD0000" ValueIndicatorDistanceType="Absolute" ValueIndicatorDistance="-46" LabelDistanceType="Absolute" LabelDistance="25" RangeEnd="18" MinorTickCount="1" MajorTickCount="10">
+                        <agc:Scale.Label>
+                            <TextBlock Foreground="Red" Text="V"></TextBlock>
+                        </agc:Scale.Label>
+                    </agc:Scale>
+                </agc:Gauge.PrimaryScale>
+            </agc:Gauge>
+
+            <agc:Gauge Fill="White" Grid.Column="2" Name="CurrentGauge" ArcPadding="-10" AngleEnd="-40" AngleBegin="220" StrokeThickness="0.5" Width="Auto" Height="Auto">
+                <agc:Gauge.PrimaryScale>
+                    <agc:Scale DialShape="Line" Value="0" AngleBegin="210" ArcStrokeThickness="3" Stroke="{x:Null}" ArcStroke="#FFFFB900" ValueIndicatorDistanceType="Absolute" ValueIndicatorDistance="-46" LabelDistanceType="Absolute" LabelDistance="25" MinorTickCount="1" RangeEnd="6" MajorTickCount="7">
+                        <agc:Scale.MajorTicks>
+                            <agc:MajorTicksLine LabelBrush="Black" Foreground="Black" Background="Black" TickStroke="#FFFFB900"/>
+                        </agc:Scale.MajorTicks>
+                        <agc:Scale.Label>
+                            <TextBlock Foreground="LightSalmon" Text="A"></TextBlock>
+                        </agc:Scale.Label>
+                    </agc:Scale>
+                </agc:Gauge.PrimaryScale>
+            </agc:Gauge>
+
+            <RadioButton Grid.Row="1" Name="VoltageCheck" Content="Voltage Input" IsChecked="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <RadioButton Grid.Row="2" Name="CurrentCheck" Content="Current Input" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Slider Grid.Column="1" Grid.Row="1" Name="valueSlider" ValueChanged="valueSlider_ValueChanged" VerticalAlignment="Center" Margin="111,10,10,10"/>
+            <sdk:Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,5,0,7">
+                <TextBlock Text="Value Input"></TextBlock>
+            </sdk:Label>
+
+            <Slider Grid.Column="1" Grid.Row="2" x:Name="ResistanceSlider" ValueChanged="ResistanceSlider_ValueChanged" VerticalAlignment="Center" Margin="111,9,10,10" Value="-1"/>
+            <sdk:Label Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,5,0,6">
+                <TextBlock Text="Resistance Input"></TextBlock>
+            </sdk:Label>
+            <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="152,0,110,0" MinWidth="30" Name="ResistanceIndicator" />
+            <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="182,0,74,1"  MinWidth="30" Text="Ohm"></TextBlock>      
+        </Grid>
+    </Grid>
+</UserControl>
