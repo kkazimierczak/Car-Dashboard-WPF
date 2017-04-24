@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Car Dashboard Simulator in WPF
+ * made (mostly) by Krzysztof Kazimierczak
+ * and maybe by Lukasz Janasz
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
