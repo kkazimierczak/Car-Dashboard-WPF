@@ -38,7 +38,17 @@ namespace IiMwT_Projekt_CS_WPF_2017
         public MainWindow()
         {
             InitializeComponent();
-            InitCarDashboard();
+
+            EngineModel engine = new EngineModel();
+
+            Thread simulation = new Thread(engine.RunEngine);
+            simulation.Start();
+
+            Model_Interface_Communication stateObserver = new Model_Interface_Communication();
+            
+            stateObserver.UpdateCurrentValues(engine);
+
+            SpeedGauge.PrimaryScale.Value = stateObserver.currentSpeed;
         }
 
         private void InitCarDashboard()
