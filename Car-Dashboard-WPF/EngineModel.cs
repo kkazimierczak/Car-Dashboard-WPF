@@ -1,26 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Timers;
 
-namespace IiMwT_Projekt_CS_WPF_2017
+namespace Car_Dashboard_WPF
 {
     class EngineModel
     {
         public int currentSpeed;
-        public int previousSpeed;
-        
+
+        Timer timer; 
+                
         public EngineModel()
         {
             currentSpeed = 50;
+            InitializeTimer();
+        }
+
+        private void InitializeTimer()
+        {
+            timer = new Timer();
+            timer.Elapsed += Timer_Elapsed;
+            timer.Interval = 50;
+            timer.Start();
+        }
+
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            RunEngine();
         }
 
         public void RunEngine()
         {
             currentSpeed += 1;
-            Thread.Sleep(500);
         }
     }
 }

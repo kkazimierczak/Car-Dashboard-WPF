@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IiMwT_Projekt_CS_WPF_2017.Properties
+namespace Car_Dashboard_WPF.Properties
 {
 
 

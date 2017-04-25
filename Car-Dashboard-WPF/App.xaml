@@ -1,7 +1,7 @@
-﻿<Application x:Class="IiMwT_Projekt_CS_WPF_2017.App"
+﻿<Application x:Class="Car_Dashboard_WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:IiMwT_Projekt_CS_WPF_2017"
+             xmlns:local="clr-namespace:Car_Dashboard_WPF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

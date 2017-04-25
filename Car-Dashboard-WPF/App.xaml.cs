@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace IiMwT_Projekt_CS_WPF_2017
+namespace Car_Dashboard_WPF
 {
     /// <summary>
     /// Interaction logic for App.xaml

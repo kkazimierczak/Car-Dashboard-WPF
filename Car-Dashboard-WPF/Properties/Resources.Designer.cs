@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IiMwT_Projekt_CS_WPF_2017.Properties
+namespace Car_Dashboard_WPF.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace IiMwT_Projekt_CS_WPF_2017.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IiMwT_Projekt_CS_WPF_2017.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Car_Dashboard_WPF.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
