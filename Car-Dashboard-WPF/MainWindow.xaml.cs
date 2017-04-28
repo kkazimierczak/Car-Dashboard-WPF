@@ -37,9 +37,9 @@ namespace Car_Dashboard_WPF
 
         private void Observe()
         {
-            for (int i = 0; i < 10; i++)
+            while(true)
             {
-                Thread.Sleep(100);
+                Thread.Sleep(10);
                 stateObserver.UpdateCurrentValues(engine);
                 SpeedGauge.Dispatcher.Invoke(new UpdaterDelegate(UpdateGauge));
             }
