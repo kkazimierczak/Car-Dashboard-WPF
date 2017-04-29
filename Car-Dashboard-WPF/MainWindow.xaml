@@ -73,7 +73,13 @@
                    StrokeThickness="10" 
                    Stroke="#FF252525">
             <agc:Gauge.PrimaryScale>
-                <agc:Scale />
+                <agc:Scale
+                    Label="RPM"
+                    RangeBegin="0"
+                    RangeEnd="7000"
+                    MajorTickCount="8"
+                    MinorTickCount="3"
+                    TertiaryTickCount="0" />
             </agc:Gauge.PrimaryScale>
         </agc:Gauge>
         <agc:Gauge x:Name="TempGauge" 
