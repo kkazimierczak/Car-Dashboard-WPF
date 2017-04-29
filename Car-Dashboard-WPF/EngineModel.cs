@@ -5,7 +5,7 @@ namespace Car_Dashboard_WPF
 {
     class EngineModel
     {
-        public double currentSpeed, previousSpeed, gain, timeConstant, SamplingTime;
+        public double wantedSpeed, currentSpeed, previousSpeed, gain, acceleration, SamplingTime;
 
         Timer timer;
                 
@@ -13,10 +13,11 @@ namespace Car_Dashboard_WPF
         {
             InitializeTimer();
 
+            wantedSpeed = 50;
             currentSpeed = 0;
             previousSpeed = 0;
-            gain = 1;
-            timeConstant = 100;
+            gain = 0.03;
+            acceleration = 0.2;
             SamplingTime = timer.Interval/1000;
         }
 
@@ -30,20 +31,15 @@ namespace Car_Dashboard_WPF
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            RunEngine(100);
+            RunEngine(wantedSpeed);
         }
 
-        public void RunEngine(int wantedSpeed)
+        public void RunEngine(double wantedSpeed)
         {
             //currentSpeed = gain * SamplingTime / timeConstant * wantedSpeed + (timeConstant - SamplingTime) / timeConstant * previousSpeed;
-            if (currentSpeed < wantedSpeed)
-            {
-                currentSpeed++;
-            }
-            else if (currentSpeed > wantedSpeed)
-            {
-                currentSpeed--;
-            }
+            double speedDifference = wantedSpeed - currentSpeed;
+            if (Math.Abs(speedDifference) < 0.5) return;
+            currentSpeed += Math.Sign(speedDifference) * acceleration + speedDifference * gain;
         }
     }
 }

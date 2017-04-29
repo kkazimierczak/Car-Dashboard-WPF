@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using System.Windows.Controls;
 
 namespace Car_Dashboard_WPF
 {
@@ -6,7 +7,7 @@ namespace Car_Dashboard_WPF
     {
         public double currentSpeed { get; set; }
 
-        public void UpdateCurrentValues(EngineModel engine)
+        public void UpdateCurrentValues(EngineModel engine, Slider slider)
         {
             currentSpeed = engine.currentSpeed;
         }

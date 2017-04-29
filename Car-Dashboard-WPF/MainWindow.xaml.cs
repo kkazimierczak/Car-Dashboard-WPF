@@ -18,9 +18,13 @@ namespace Car_Dashboard_WPF
         EngineModel engine;
         ModelInterfaceCommunication stateObserver;
 
+        public delegate void UpdaterDelegate();
+
         public MainWindow()
         {
             InitializeComponent();
+            Top = 0;
+            Left = 50;
 
             engine = new EngineModel();
             stateObserver = new ModelInterfaceCommunication();
@@ -33,21 +37,25 @@ namespace Car_Dashboard_WPF
             dupa.Start();
         }
 
-        public delegate void UpdaterDelegate();
-
         private void Observe()
         {
             while(true)
             {
                 Thread.Sleep(10);
-                stateObserver.UpdateCurrentValues(engine);
-                SpeedGauge.Dispatcher.Invoke(new UpdaterDelegate(UpdateGauge));
+                stateObserver.UpdateCurrentValues(engine, SpeedSlider);
+                SpeedGauge.Dispatcher.Invoke(new UpdaterDelegate(() => {
+                    SpeedGauge.PrimaryScale.Value = engine.currentSpeed;
+                }));
+                SpeedSlider.Dispatcher.Invoke(new UpdaterDelegate(() =>
+                {
+                    engine.wantedSpeed = (int)SpeedSlider.Value;
+                }));
             }
         }
 
-        private void UpdateGauge()
-        {
-            SpeedGauge.PrimaryScale.Value = stateObserver.currentSpeed;
-        }
+        //private void UpdateGauge()
+        //{
+        //    SpeedGauge.PrimaryScale.Value = stateObserver.currentSpeed;
+        //}
     }
 }
