@@ -8,6 +8,11 @@ namespace Car_Dashboard_WPF
     class EngineModel
     {
         const int MIN_GEAR = 1, MAX_GEAR = 6;
+        const double
+            GEAR_RAISING_RPM = 2500,
+            GEAR_REDUCING_RPM = 1500,
+            GEAR_REDUCING_RPM_HYSTERESIS = 1800,
+            GEAR_REDUCING_HYSTERESIS = 2000;
 
         public double
             wantedSpeed,
@@ -72,22 +77,22 @@ namespace Car_Dashboard_WPF
         }
         private void AutomaticTransmission()
         {
-            if (currentRPM > 2500 && gear < MAX_GEAR)
+            if (currentRPM > GEAR_RAISING_RPM && gear < MAX_GEAR)
             {
                 RaiseGear();
             }
-            else if (currentRPM < 1500 && gear > MIN_GEAR)
+            else if (currentRPM < GEAR_REDUCING_RPM && gear > MIN_GEAR)
             {
                 ReduceGear();
             }
             else
             {
-                if (raisingGear && currentRPM < 1800)
+                if (raisingGear && currentRPM < GEAR_REDUCING_RPM_HYSTERESIS)
                 {
                     raisingGear = false;
                     gearChangingAcceleration = 0;
                 }
-                if (reducingGear && currentRPM > 2000)
+                if (reducingGear && currentRPM > GEAR_REDUCING_HYSTERESIS)
                 {
                     reducingGear = false;
                     gearChangingAcceleration = 0;
@@ -97,6 +102,11 @@ namespace Car_Dashboard_WPF
         private void CalculateRPM(double speedDifference)
         {
             currentRPM += (Math.Sign(speedDifference) * acceleration + speedDifference * gain) * gearCoefficient[gear] + gearChangingAcceleration;
+
+            if (currentRPM < 0)
+                currentRPM = 0;
+            if (currentRPM > 7000)
+                currentRPM = 7000;
         }
         private void CalculateSpeed(double speedDifference)
         {

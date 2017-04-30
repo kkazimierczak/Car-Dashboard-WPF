@@ -18,7 +18,7 @@
                    StrokeThickness="10" 
                    AdjacentPadding="10" 
                    Height="200" 
-                   Width="200" 
+                   Width="200"
                    Stroke="#FF252525">
             <agc:Gauge.PrimaryScale>
                 <agc:Scale ValueFormat=""
