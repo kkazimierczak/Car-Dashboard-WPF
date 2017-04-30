@@ -16,7 +16,6 @@ namespace Car_Dashboard_WPF
     public partial class MainWindow : Window
     {
         EngineModel engine;
-        ModelInterfaceCommunication stateObserver;
 
         public delegate void UpdaterDelegate();
 
@@ -27,7 +26,6 @@ namespace Car_Dashboard_WPF
             Left = 50;
 
             engine = new EngineModel();
-            stateObserver = new ModelInterfaceCommunication();
             Loaded += MainWindow_Loaded;
         }
 
@@ -41,14 +39,20 @@ namespace Car_Dashboard_WPF
         {
             while(true)
             {
-                Thread.Sleep(10);
-                stateObserver.UpdateCurrentValues(engine, SpeedSlider);
+                Thread.Sleep(5);
+                RPMGauge.Dispatcher.Invoke(new UpdaterDelegate(() => {
+                    RPMGauge.PrimaryScale.Value = engine.currentRPM;
+                }));
                 SpeedGauge.Dispatcher.Invoke(new UpdaterDelegate(() => {
                     SpeedGauge.PrimaryScale.Value = engine.currentSpeed;
                 }));
                 SpeedSlider.Dispatcher.Invoke(new UpdaterDelegate(() =>
                 {
                     engine.wantedSpeed = (int)SpeedSlider.Value;
+                }));
+                GearTextBox.Dispatcher.Invoke(new UpdaterDelegate(() =>
+                {
+                    GearTextBox.Text = engine.gear.ToString();
                 }));
             }
         }
