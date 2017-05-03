@@ -4,6 +4,7 @@
  * and maybe by Lukasz Janasz
  */
 using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
@@ -16,8 +17,7 @@ namespace Car_Dashboard_WPF
     public partial class MainWindow : Window
     {
         EngineModel engine;
-
-        public delegate void UpdaterDelegate();
+        delegate void UpdaterDelegate();
 
         public MainWindow()
         {
@@ -31,8 +31,8 @@ namespace Car_Dashboard_WPF
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            Thread dupa = new Thread(Observe);
-            dupa.Start();
+            Thread observer = new Thread(Observe);
+            observer.Start();
         }
 
         private void Observe()
@@ -54,12 +54,20 @@ namespace Car_Dashboard_WPF
                 {
                     GearTextBox.Text = engine.gear.ToString();
                 }));
+                WantedSpeedTextBox.Dispatcher.Invoke(new UpdaterDelegate(() =>
+                {
+                    int value = (int)SpeedSlider.Value;
+                    WantedSpeedTextBox.Text = value.ToString();
+                }));
+                FuelUsageTextBox.Dispatcher.Invoke(new UpdaterDelegate(() =>
+                {
+                    FuelUsageTextBox.Text = Math.Round(engine.fuelUsage * 3600, 1).ToString();
+                }));
+                FuelGauge.Dispatcher.Invoke(new UpdaterDelegate(() =>
+                {
+                    FuelGauge.PrimaryScale.Value = engine.fuelLeft;
+                }));
             }
         }
-
-        //private void UpdateGauge()
-        //{
-        //    SpeedGauge.PrimaryScale.Value = stateObserver.currentSpeed;
-        //}
     }
 }

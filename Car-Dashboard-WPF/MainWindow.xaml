@@ -22,6 +22,9 @@
                    Stroke="#FF252525">
             <agc:Gauge.PrimaryScale>
                 <agc:Scale ValueFormat=""
+                           RangeBegin="0"
+                           RangeEnd="65"
+                           Value="50"
                            AngleBegin="240"
                            AngleEnd="120" 
                            ArcPadding="0" 
@@ -29,8 +32,7 @@
                            FontSize="14" 
                            MajorTickDiv="2" 
                            MajorTickCount="3" 
-                           MinorTickCount="1" 
-                           RangeEnd="100" 
+                           MinorTickCount="1"
                            Theme="CarMeter" 
                            IsHitTestVisible="True" 
                            Label="{x:Null}"
@@ -82,7 +84,7 @@
                     TertiaryTickCount="0" />
             </agc:Gauge.PrimaryScale>
         </agc:Gauge>
-        <agc:Gauge x:Name="TempGauge" 
+        <agc:Gauge x:Name="TempGauge"
             HorizontalAlignment="Left" 
             Margin="780,50,0,0" 
             VerticalAlignment="Top" 
@@ -96,6 +98,7 @@
             Stroke="#FF252525">
             <agc:Gauge.PrimaryScale>
                 <agc:Scale ValueFormat=""
+                    Value="20"
                     AngleBegin="240"
                     AngleEnd="120" 
                     ArcPadding="0" 
@@ -125,7 +128,13 @@
                     Value="0"
                     Minimum="0" Maximum="230" />
         <TextBox x:Name="GearTextBox"
-            Width="50" Height="50"
+            Width="50" Margin="542,323,682,338"
+            />
+        <TextBox x:Name="WantedSpeedTextBox"
+            Width="50" Margin="487,323,737,338"
+            />
+        <TextBox x:Name="FuelUsageTextBox"
+            Width="50" Margin="597,323,627,338"
             />
     </Grid>
 </Window>

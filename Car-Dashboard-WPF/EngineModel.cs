@@ -7,7 +7,10 @@ namespace Car_Dashboard_WPF
 {
     class EngineModel
     {
-        const int MIN_GEAR = 1, MAX_GEAR = 6;
+        #region Fields
+        const int
+            MIN_GEAR = 1, MAX_GEAR = 6,
+            SAMPLING_TIME = 50;
         const double
             GEAR_RAISING_RPM = 2500,
             GEAR_REDUCING_RPM = 1500,
@@ -20,7 +23,10 @@ namespace Car_Dashboard_WPF
             currentRPM,
             gain,
             acceleration,
-            gearChangingAcceleration;
+            gearChangingAcceleration,
+            fuelUsage,
+            fuelLeft;
+
         public int gear { get; private set; }
 
         double[] gearCoefficient = { 0, 133.3, 66.7, 40, 28.6, 22.2, 16.7 };
@@ -28,6 +34,7 @@ namespace Car_Dashboard_WPF
 
         Timer timer;
         List<double> speedHistory;
+        #endregion
 
         public EngineModel()
         {
@@ -36,6 +43,7 @@ namespace Car_Dashboard_WPF
             PopulateList();
 
             gear = 1;
+            fuelLeft = 50;
             raisingGear = false;
             reducingGear = false;
             wantedSpeed = 0;
@@ -50,12 +58,13 @@ namespace Car_Dashboard_WPF
         {
             timer = new Timer();
             timer.Elapsed += Timer_Elapsed;
-            timer.Interval = 50;
+            timer.Interval = SAMPLING_TIME;
             timer.Start();
         }
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            RunEngine(wantedSpeed);
+            if (fuelLeft >= 0)
+                RunEngine(wantedSpeed);
         }
         private void PopulateList()
         {
@@ -67,14 +76,16 @@ namespace Car_Dashboard_WPF
         
         public void RunEngine(double wantedSpeed)
         {
-            //currentSpeed = gain * SamplingTime / timeConstant * wantedSpeed + (timeConstant - SamplingTime) / timeConstant * previousSpeed;
             double speedDifference = wantedSpeed - currentSpeed;
-            //if (Math.Abs(speedDifference) < 0.5 && currentRPM < 100) return;
+            double acceleration = calculateAcceleration();
+
+            CalculateFuelUsage(acceleration);
 
             CalculateSpeed(speedDifference);
             CalculateRPM(speedDifference);
             AutomaticTransmission();
         }
+
         private void AutomaticTransmission()
         {
             if (currentRPM > GEAR_RAISING_RPM && gear < MAX_GEAR)
@@ -99,6 +110,16 @@ namespace Car_Dashboard_WPF
                 }
             }
         }
+
+        private void CalculateFuelUsage(double acceleration)
+        {
+            fuelUsage = -3e-8 * currentSpeed * currentSpeed + 3e-5 * currentSpeed + 5e-4;
+            fuelLeft -= fuelUsage;
+        }
+        private double calculateAcceleration()
+        {
+            return (speedHistory[speedHistory.Count - 1] - speedHistory[speedHistory.Count - 2])/(SAMPLING_TIME / 1000);
+        }       
         private void CalculateRPM(double speedDifference)
         {
             currentRPM += (Math.Sign(speedDifference) * acceleration + speedDifference * gain) * gearCoefficient[gear] + gearChangingAcceleration;
