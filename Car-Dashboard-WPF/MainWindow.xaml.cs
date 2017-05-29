@@ -84,5 +84,10 @@ namespace Car_Dashboard_WPF
                 }));
             }
         }
+
+        private void ChartsButton_Click(object sender, RoutedEventArgs e)
+        {
+            new ChartWindow().Show();
+        }
     }
 }
