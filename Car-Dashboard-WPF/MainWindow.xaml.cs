@@ -19,27 +19,20 @@ namespace Car_Dashboard_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static EngineDataContainer engineData = new EngineDataContainer();
+
         EngineModel engine;
         delegate void UpdaterDelegate();
         public ObservableCollection<Point> Data { get; set; }
+
+        public static double currentspeed = 0;
 
         public MainWindow()
         {
             InitializeComponent();
             Top = 0;
             Left = -5;
-
-            ObservableDataSource<Point> data = new ObservableDataSource<Point>();
-            LineGraph linegraph = new LineGraph(data);
-
-            var p1 = new Point(0, 1);
-            var p2 = new Point(4, 4);
-
-            data.AppendAsync(Dispatcher, p1);
-            data.AppendAsync(Dispatcher, p2);
-
-            //Plot.Children.Add(linegraph);
-
+            
             engine = new EngineModel();
             Loaded += MainWindow_Loaded;
         }
@@ -55,7 +48,11 @@ namespace Car_Dashboard_WPF
             while(true)
             {
                 Thread.Sleep(5);
+
+                engineData.UpdateData(engine);
+
                 RPMGauge.Dispatcher.Invoke(new UpdaterDelegate(() => {
+                    currentspeed = RPMGauge.PrimaryScale.Value;
                     RPMGauge.PrimaryScale.Value = engine.currentRPM;
                 }));
                 SpeedGauge.Dispatcher.Invoke(new UpdaterDelegate(() => {

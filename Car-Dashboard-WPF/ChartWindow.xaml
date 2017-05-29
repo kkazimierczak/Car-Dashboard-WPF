@@ -6,10 +6,8 @@
         xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
         xmlns:local="clr-namespace:Car_Dashboard_WPF"
         mc:Ignorable="d"
-        Title="ChartWindow" Height="300" Width="300" Closed="Window_Closed">
+        Title="ChartWindow" Height="720" Width="400" Closed="Window_Closed">
     <Grid>
-        <d3:ChartPlotter Name="Plot"
-            Height="300"
-            Width="300" />
+        <d3:ChartPlotter Name="Plot" Margin="10,10,32,479" />
     </Grid>
 </Window>
