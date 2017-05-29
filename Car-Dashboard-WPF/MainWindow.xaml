@@ -1,16 +1,17 @@
 ﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Car_Dashboard_WPF"
-        xmlns:agc="http://www.arction.com/gauges/" x:Class="Car_Dashboard_WPF.MainWindow"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" ResizeMode="NoResize">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Car_Dashboard_WPF"
+    xmlns:agc="http://www.arction.com/gauges/" x:Class="Car_Dashboard_WPF.MainWindow"
+    xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+    mc:Ignorable="d"
+    Title="MainWindow" Height="720" Width="990" ResizeMode="NoResize">
     <Grid Background="#FF171717">
         <agc:Gauge x:Name="FuelGauge" 
                    HorizontalAlignment="Left" 
-                   Margin="300,50,0,0" 
+                   Margin="290,50,0,0" 
                    VerticalAlignment="Top" 
                    Theme="CarMeter" 
                    ArcPadding="15" 
@@ -58,7 +59,7 @@
         <agc:Gauge x:Name="SpeedGauge"
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Bottom" 
-                   Margin="25,0,0,25" 
+                   Margin="15,0,0,25" 
                    Height="400" 
                    Width="400" 
                    Theme="CarMeter"
@@ -68,7 +69,7 @@
         <agc:Gauge x:Name="RPMGauge"
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Bottom" 
-                   Margin="830,0,0,25" 
+                   Margin="560,0,0,25" 
                    Height="400" 
                    Width="400" 
                    Theme="CarMeter" 
@@ -86,7 +87,7 @@
         </agc:Gauge>
         <agc:Gauge x:Name="TempGauge"
             HorizontalAlignment="Left" 
-            Margin="780,50,0,0" 
+            Margin="500,50,0,0" 
             VerticalAlignment="Top" 
             Theme="CarMeter" 
             ArcPadding="15" 
@@ -123,18 +124,16 @@
             </agc:Gauge.PrimaryScale>
         </agc:Gauge>
         <Slider x:Name="SpeedSlider"
-                    Margin="0, 300, 0, 0"
-                    VerticalAlignment="Top" HorizontalAlignment="Center" Width="300"
+                    Margin="420,280,0,0"
+                    VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"
                     Value="0"
                     Minimum="0" Maximum="230" />
-        <TextBox x:Name="GearTextBox"
-            Width="50" Margin="542,323,682,338"
+        <TextBox x:Name="GearTextBox" Margin="455,303,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30"
             />
-        <TextBox x:Name="WantedSpeedTextBox"
-            Width="50" Margin="487,323,737,338"
+        <TextBox x:Name="WantedSpeedTextBox" Margin="420,303,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30"
             />
-        <TextBox x:Name="FuelUsageTextBox"
-            Width="50" Margin="597,323,627,338"
+        <TextBox x:Name="FuelUsageTextBox" Margin="490,303,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
             />
+        <Button x:Name="ChartsButton" Content="Graphs" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Margin="0,20,0,0"/>
     </Grid>
 </Window>
