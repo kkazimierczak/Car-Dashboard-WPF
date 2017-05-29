@@ -8,6 +8,8 @@
         mc:Ignorable="d"
         Title="ChartWindow" Height="720" Width="400" Closed="Window_Closed">
     <Grid>
-        <d3:ChartPlotter Name="Plot" Margin="10,10,32,479" />
+        <d3:ChartPlotter Name="SpeedPlot" Margin="10,10,32,479" />
+        <d3:ChartPlotter x:Name="RPMPlot" Margin="10,253,32,236" />
+        <d3:ChartPlotter x:Name="FuelUsagePlot" Margin="10,479,32,10" />
     </Grid>
 </Window>

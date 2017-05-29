@@ -23,11 +23,16 @@ namespace Car_Dashboard_WPF
     public partial class ChartWindow : Window
     {
         static bool isVisible = false;
-        const int SAMPLING_TIME = 200;
+        const int SAMPLING_TIME = 400;
         Timer timer;
-        ObservableDataSource<Point> data;
-        LineGraph linegraph;
         long cycles = 0;
+
+        ObservableDataSource<Point> speedData;
+        LineGraph speedLinegraph;
+        ObservableDataSource<Point> RPMData;
+        LineGraph RPMLinegraph;
+        ObservableDataSource<Point> fuelUsageData;
+        LineGraph fuelUsageLinegraph;
 
         public ChartWindow()
         {
@@ -36,9 +41,20 @@ namespace Car_Dashboard_WPF
             Top = 0;
             Left = 970;
 
-            data = new ObservableDataSource<Point>();
-            linegraph = new LineGraph(data);
-            Plot.Children.Add(linegraph);
+            speedData = new ObservableDataSource<Point>();
+            speedLinegraph = new LineGraph(speedData);
+            SpeedPlot.Children.Add(speedLinegraph);
+            SpeedPlot.LegendVisible = false;
+
+            RPMData = new ObservableDataSource<Point>();
+            RPMLinegraph = new LineGraph(RPMData);
+            RPMPlot.Children.Add(RPMLinegraph);
+            RPMPlot.LegendVisible = false;
+
+            fuelUsageData = new ObservableDataSource<Point>();
+            fuelUsageLinegraph = new LineGraph(fuelUsageData);
+            FuelUsagePlot.Children.Add(fuelUsageLinegraph);
+            FuelUsagePlot.LegendVisible = false;
         }
 
         private void InitializeTimer()
@@ -51,8 +67,12 @@ namespace Car_Dashboard_WPF
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            var point = new Point(cycles * timer.Interval / 1000, MainWindow.engineData.speed);
-            data.AppendAsync(Dispatcher, point);
+            var currentSpeed = new Point(cycles * timer.Interval / 1000, MainWindow.engineData.speed);
+            speedData.AppendAsync(Dispatcher, currentSpeed);
+            var currentRPM = new Point(cycles * timer.Interval / 1000, MainWindow.engineData.rpm);
+            RPMData.AppendAsync(Dispatcher, currentRPM);
+            var currentFuelUsage = new Point(cycles * timer.Interval / 1000, MainWindow.engineData.fuelUsage * 3600);
+            fuelUsageData.AppendAsync(Dispatcher, currentFuelUsage);
             cycles++;
         }
 
