@@ -7,7 +7,7 @@
     xmlns:agc="http://www.arction.com/gauges/" x:Class="Car_Dashboard_WPF.MainWindow"
     xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
     mc:Ignorable="d"
-    Title="MainWindow" Height="720" Width="990" ResizeMode="NoResize">
+    Title="MainWindow" Height="720" Width="990" ResizeMode="NoResize" Closed="Window_Closed">
     <Grid Background="#FF171717">
         <agc:Gauge x:Name="FuelGauge" 
                    HorizontalAlignment="Left" 

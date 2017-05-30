@@ -20,6 +20,7 @@ namespace Car_Dashboard_WPF
     public partial class MainWindow : Window
     {
         public static EngineDataContainer engineData = new EngineDataContainer();
+        Thread observer;
 
         EngineModel engine;
         delegate void UpdaterDelegate();
@@ -39,7 +40,7 @@ namespace Car_Dashboard_WPF
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            Thread observer = new Thread(Observe);
+            observer = new Thread(Observe);
             observer.Start();
         }
 
@@ -85,6 +86,12 @@ namespace Car_Dashboard_WPF
         private void ChartsButton_Click(object sender, RoutedEventArgs e)
         {
             new ChartWindow().Show();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+            observer.Abort();
         }
     }
 }
