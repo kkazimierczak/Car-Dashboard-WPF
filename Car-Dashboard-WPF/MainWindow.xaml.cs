@@ -49,11 +49,14 @@ namespace Car_Dashboard_WPF
             {
                 this.listBox1.Items.Add("AUTOPILOT START!");
                 speechSynthesizer.Speak("Initiating automatic driving mode");
+                SpeedSlider.Value = 50;
+
             }
             else if (e.Result.Text == "deactivate")
             {
                 this.listBox1.Items.Add("AUTOPILOT STOP!");
                 speechSynthesizer.Speak("Deactivating automatic driving mode");
+                SpeedSlider.Value = 0;
             }
             else
             {

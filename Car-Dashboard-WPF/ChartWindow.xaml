@@ -8,8 +8,11 @@
         mc:Ignorable="d"
         Title="ChartWindow" Height="720" Width="400" Closed="Window_Closed">
     <Grid>
-        <d3:ChartPlotter Name="SpeedPlot" Margin="10,10,32,479" />
-        <d3:ChartPlotter x:Name="RPMPlot" Margin="10,253,32,236" />
-        <d3:ChartPlotter x:Name="FuelUsagePlot" Margin="10,479,32,10" />
+        <d3:ChartPlotter Name="SpeedPlot" Margin="10,31,32,458" />
+        <d3:ChartPlotter x:Name="RPMPlot" Margin="10,267,32,222" />
+        <d3:ChartPlotter x:Name="FuelUsagePlot" Margin="10,489,32,0" />
+        <Label x:Name="label" Content="Speed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0"/>
+        <Label x:Name="label_Copy" Content="RPM" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,236,0,0"/>
+        <Label x:Name="label_Copy1" Content="Fuel usage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,458,0,0"/>
     </Grid>
 </Window>
