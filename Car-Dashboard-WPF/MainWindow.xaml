@@ -48,7 +48,7 @@
                 </agc:Scale>
             </agc:Gauge.PrimaryScale>
         </agc:Gauge>
-        <Image x:Name="image"
+        <Image x:Name="FuelImage"
                Source="images/fuel_full.png" 
                HorizontalAlignment="Left" 
                Height="30"
@@ -123,6 +123,14 @@
                 </agc:Scale>
             </agc:Gauge.PrimaryScale>
         </agc:Gauge>
+        <Image x:Name="CoolantImage"
+            Source="images/engine_coolant_g.png" 
+            HorizontalAlignment="Left"
+            Height="30"
+            Width="30"
+            VerticalAlignment="Top" 
+            RenderTransformOrigin="2.986,2.171" 
+            Margin="640,130,0,0" />
         <Slider x:Name="SpeedSlider"
                     Margin="420,280,0,0"
                     VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"
