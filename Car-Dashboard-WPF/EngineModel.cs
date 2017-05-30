@@ -86,26 +86,6 @@ namespace Car_Dashboard_WPF
             CalculateRPM(speedDifference);
             AutomaticTransmission();
         }
-
-        private void CalculateTemperature()
-        {
-            if (currentRPM < 1 && currentTemperature > 0)
-            {
-                currentTemperature -= 0.05;
-            }
-            else if (currentTemperature < 90)
-            {
-                if (currentRPM > 2600)
-                {
-                    currentTemperature += currentSpeed * 0.001;
-                }
-                else
-                {
-                    currentTemperature += currentSpeed * 0.0004;
-                }
-            }
-        }
-
         private void AutomaticTransmission()
         {
             if (currentRPM > GEAR_RAISING_RPM && gear < MAX_GEAR)
@@ -131,15 +111,33 @@ namespace Car_Dashboard_WPF
             }
         }
 
+        private double calculateAcceleration()
+        {
+            return (speedHistory[speedHistory.Count - 1] - speedHistory[speedHistory.Count - 2]) / (SAMPLING_TIME / 1000);
+        }
         private void CalculateFuelUsage(double acceleration)
         {
             fuelUsage = -3e-8 * currentSpeed * currentSpeed + 3e-5 * currentSpeed + 5e-4;
             fuelLeft -= fuelUsage;
         }
-        private double calculateAcceleration()
+        private void CalculateTemperature()
         {
-            return (speedHistory[speedHistory.Count - 1] - speedHistory[speedHistory.Count - 2])/(SAMPLING_TIME / 1000);
-        }       
+            if (currentRPM < 1 && currentTemperature > 0)
+            {
+                currentTemperature -= 0.05;
+            }
+            else if (currentTemperature < 90)
+            {
+                if (currentRPM > 2600)
+                {
+                    currentTemperature += currentSpeed * 0.001;
+                }
+                else
+                {
+                    currentTemperature += currentSpeed * 0.0004;
+                }
+            }
+        }
         private void CalculateRPM(double speedDifference)
         {
             currentRPM += (Math.Sign(speedDifference) * acceleration + speedDifference * gain) * gearCoefficient[gear] + gearChangingAcceleration;

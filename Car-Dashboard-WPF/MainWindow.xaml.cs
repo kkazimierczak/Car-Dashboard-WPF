@@ -7,6 +7,8 @@ using System;
 using System.Threading;
 using System.Windows;
 using System.Collections.ObjectModel;
+using System.Speech.Recognition;
+using System.Speech.Synthesis;
 
 namespace Car_Dashboard_WPF
 {
@@ -24,6 +26,46 @@ namespace Car_Dashboard_WPF
 
         public static double currentspeed = 0;
 
+        private void SpeechRecognitionButton_Click(object sender, RoutedEventArgs e)
+        {
+            RecognizeSpeech();
+        }            
+        static SpeechRecognitionEngine _recognizer = null;
+        SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
+        void RecognizeSpeech()
+        {
+            _recognizer = new SpeechRecognitionEngine();
+            _recognizer.LoadGrammar(new DictationGrammar());
+            _recognizer.LoadGrammar(new Grammar(new GrammarBuilder("activate")));
+            _recognizer.LoadGrammar(new Grammar(new GrammarBuilder("deactivate")));
+            _recognizer.SpeechRecognized += _recognizeSpeech_SpeechRecognized;
+            _recognizer.SpeechRecognitionRejected += _recognizeSpeech_SpeechRecognitionRejected;
+            _recognizer.SetInputToDefaultAudioDevice();
+            _recognizer.RecognizeAsync(RecognizeMode.Multiple);
+        }
+        void _recognizeSpeech_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        {
+            if (e.Result.Text == "activate")
+            {
+                this.listBox1.Items.Add("AUTOPILOT START!");
+                speechSynthesizer.Speak("Initiating automatic driving mode");
+            }
+            else if (e.Result.Text == "deactivate")
+            {
+                this.listBox1.Items.Add("AUTOPILOT STOP!");
+                speechSynthesizer.Speak("Deactivating automatic driving mode");
+            }
+            else
+            {
+                this.listBox1.Items.Add(e.Result.Text);
+            }
+        }
+        void _recognizeSpeech_SpeechRecognitionRejected(object sender,
+        SpeechRecognitionRejectedEventArgs e)
+        {
+            this.listBox1.Items.Add("Unrecognized command...");
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -39,7 +81,6 @@ namespace Car_Dashboard_WPF
             observer = new Thread(Observe);
             observer.Start();
         }
-
         private void Observe()
         {
             while(true)
@@ -87,7 +128,6 @@ namespace Car_Dashboard_WPF
         {
             new ChartWindow().Show();
         }
-
         private void Window_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();

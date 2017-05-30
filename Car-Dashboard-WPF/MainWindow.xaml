@@ -135,5 +135,7 @@
         <TextBox x:Name="FuelUsageTextBox" Margin="490,303,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
             />
         <Button x:Name="ChartsButton" Content="Show Graphs" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Click="ChartsButton_Click" Margin="0,20,0,0"/>
+        <ListBox x:Name="listBox1" HorizontalAlignment="Left" Height="225" Margin="420,441,0,0" VerticalAlignment="Top" Width="135"/>
+        <Button x:Name="SpeechRecognitionButton" Content="Recognize speech" HorizontalAlignment="Left" Margin="442,386,0,0" VerticalAlignment="Top" Width="100" Height="50" Click="SpeechRecognitionButton_Click"/>
     </Grid>
 </Window>
