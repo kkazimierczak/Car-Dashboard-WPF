@@ -4,12 +4,8 @@
  * and maybe by Lukasz Janasz
  */
 using System;
-using System.Diagnostics;
 using System.Threading;
 using System.Windows;
-using System.Windows.Threading;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Collections.ObjectModel;
 
 namespace Car_Dashboard_WPF
@@ -79,6 +75,10 @@ namespace Car_Dashboard_WPF
                 FuelGauge.Dispatcher.Invoke(new UpdaterDelegate(() =>
                 {
                     FuelGauge.PrimaryScale.Value = engine.fuelLeft;
+                }));
+                TempGauge.Dispatcher.Invoke(new UpdaterDelegate(() =>
+                {
+                    TempGauge.PrimaryScale.Value = engine.currentTemperature;
                 }));
             }
         }

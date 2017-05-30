@@ -25,7 +25,8 @@ namespace Car_Dashboard_WPF
             acceleration,
             gearChangingAcceleration,
             fuelUsage,
-            fuelLeft;
+            fuelLeft,
+            currentTemperature;
 
         public int gear { get; private set; }
 
@@ -80,10 +81,29 @@ namespace Car_Dashboard_WPF
             double acceleration = calculateAcceleration();
 
             CalculateFuelUsage(acceleration);
-
+            CalculateTemperature();
             CalculateSpeed(speedDifference);
             CalculateRPM(speedDifference);
             AutomaticTransmission();
+        }
+
+        private void CalculateTemperature()
+        {
+            if (currentRPM < 1 && currentTemperature > 0)
+            {
+                currentTemperature -= 0.05;
+            }
+            else if (currentTemperature < 90)
+            {
+                if (currentRPM > 2600)
+                {
+                    currentTemperature += currentSpeed * 0.001;
+                }
+                else
+                {
+                    currentTemperature += currentSpeed * 0.0004;
+                }
+            }
         }
 
         private void AutomaticTransmission()
